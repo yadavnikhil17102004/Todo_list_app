@@ -9,7 +9,49 @@
 </head>
 <body>
     <div class="container">
-        <div class="todo-app">
+        <!-- Auth Forms -->
+        <div id="authForms" class="auth-forms">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="text" id="loginUsername" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <p class="form-switch">Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+            </div>
+
+            <div class="form-container hidden">
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <input type="text" id="signupUsername" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p class="form-switch">Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </div>
+        </div>
+
+        <!-- Todo App -->
+        <div id="todoApp" class="todo-app hidden">
+            <div class="user-info">
+                <div class="user-details">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="username"></span>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
             <h1>Todo List <i class="fas fa-check-circle"></i></h1>
             <div class="input-section">
                 <div class="main-input">
@@ -38,6 +80,7 @@
             <ul id="taskList"></ul>
         </div>
     </div>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

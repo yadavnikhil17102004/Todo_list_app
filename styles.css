@@ -331,4 +331,239 @@ h1 i {
         align-self: flex-end;
         margin-top: 10px;
     }
+}
+
+/* Auth Forms */
+.auth-forms {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-container {
+    text-align: center;
+}
+
+.form-container h2 {
+    color: #2D3436;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #6B73FF;
+    box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.1);
+}
+
+.form-container button {
+    width: 100%;
+    padding: 15px;
+    background: #6B73FF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(107, 115, 255, 0.3);
+}
+
+.form-container button:hover {
+    background: #5A62FF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 115, 255, 0.4);
+}
+
+.form-switch {
+    margin-top: 20px;
+    color: #666;
+}
+
+.form-switch a {
+    color: #6B73FF;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-switch a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* User Info */
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2D3436;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.user-details i {
+    color: #6B73FF;
+    font-size: 24px;
+}
+
+.logout-btn {
+    background: #FF6B6B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logout-btn:hover {
+    background: #FF5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Debug Panel */
+.debug-panel {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background: rgba(45, 52, 54, 0.95);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.debug-panel.collapsed {
+    transform: translateY(calc(100% - 40px));
+}
+
+.debug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(107, 115, 255, 0.2);
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+}
+
+.debug-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+}
+
+.debug-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.debug-toggle:hover {
+    transform: scale(1.1);
+}
+
+.debug-content {
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.debug-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.debug-btn {
+    padding: 8px 15px;
+    background: #6B73FF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.debug-btn:hover {
+    background: #5A62FF;
+    transform: translateY(-2px);
+}
+
+.debug-logs {
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.debug-log-entry {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.debug-log-entry.error {
+    color: #FF6B6B;
+}
+
+.debug-log-entry.warning {
+    color: #FFD93D;
+}
+
+.debug-log-entry.success {
+    color: #6BCB77;
+}
+
+.debug-log-entry.info {
+    color: #6B73FF;
+}
+
+.debug-timestamp {
+    color: #888;
+    margin-right: 5px;
 } 
