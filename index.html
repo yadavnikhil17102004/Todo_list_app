@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <h1>Todo List <i class="fas fa-check-circle"></i></h1>
+            <div class="input-section">
+                <div class="main-input">
+                    <input type="text" id="taskInput" placeholder="Add your task...">
+                    <button id="addButton">Add</button>
+                </div>
+                <div class="additional-inputs">
+                    <div class="input-group">
+                        <input type="url" id="linkInput" placeholder="Add a link (optional)">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="file" id="imageInput" accept="image/*">
+                        <label for="imageInput" class="image-label">
+                            <i class="fas fa-image"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button id="clearCompleted">Clear Completed</button>
+            </div>
+            <ul id="taskList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

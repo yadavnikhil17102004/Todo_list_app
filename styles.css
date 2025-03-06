@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+.todo-app {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    color: #2D3436;
+    font-size: 32px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 i {
+    color: #6B73FF;
+    font-size: 36px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.main-input {
+    display: flex;
+    gap: 15px;
+}
+
+.main-input input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.main-input input:focus {
+    outline: none;
+    border-color: #6B73FF;
+    box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.1);
+}
+
+.main-input button {
+    padding: 15px 30px;
+    background: #6B73FF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(107, 115, 255, 0.3);
+}
+
+.main-input button:hover {
+    background: #5A62FF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 115, 255, 0.4);
+}
+
+.additional-inputs {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.input-group {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #6B73FF;
+    box-shadow: 0 0 0 3px rgba(107, 115, 255, 0.1);
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    color: #6B73FF;
+    font-size: 18px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.image-label {
+    position: absolute;
+    right: 15px;
+    color: #6B73FF;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.image-label:hover {
+    color: #5A62FF;
+    transform: scale(1.1);
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: #F5F6FA;
+    color: #2D3436;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #E0E0E0;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: #6B73FF;
+    color: white;
+    box-shadow: 0 4px 15px rgba(107, 115, 255, 0.3);
+}
+
+#taskList {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+    background: #F8F9FA;
+    border-color: #E0E0E0;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-checkbox {
+    margin-right: 20px;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #6B73FF;
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-text {
+    font-size: 16px;
+    color: #2D3436;
+    line-height: 1.5;
+}
+
+.task-link {
+    font-size: 14px;
+    color: #6B73FF;
+    text-decoration: none;
+    word-break: break-all;
+    transition: all 0.3s ease;
+}
+
+.task-link:hover {
+    color: #5A62FF;
+    text-decoration: underline;
+}
+
+.task-image {
+    max-width: 250px;
+    max-height: 180px;
+    border-radius: 8px;
+    margin-top: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.task-image:hover {
+    transform: scale(1.02);
+}
+
+.delete-btn {
+    background: none;
+    color: #FF6B6B;
+    padding: 8px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+    transform: scale(1.1);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-item {
+    animation: slideIn 0.4s ease;
+}
+
+#clearCompleted {
+    background: #FF6B6B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#clearCompleted:hover {
+    background: #FF5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+@media (max-width: 600px) {
+    .todo-app {
+        padding: 25px;
+    }
+    
+    .main-input {
+        flex-direction: column;
+    }
+    
+    .main-input button {
+        width: 100%;
+    }
+    
+    .filters {
+        justify-content: center;
+    }
+    
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task-checkbox {
+        margin-bottom: 10px;
+    }
+    
+    .delete-btn {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+} 
