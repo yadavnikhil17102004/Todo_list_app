@@ -12,13 +12,25 @@ class Auth {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            this.users = await response.json();
+            const safeUsers = await response.json();
+            // Store full user data in memory
+            this.users = safeUsers;
             console.log(`Loaded ${this.users.length} users`);
             
+            // Check for existing session
             const currentUserStr = localStorage.getItem('currentUser');
             if (currentUserStr) {
-                this.currentUser = JSON.parse(currentUserStr);
-                console.log('Restored current user:', this.currentUser.username);
+                const storedUser = JSON.parse(currentUserStr);
+                // Find the user in the loaded users array
+                const currentUser = this.users.find(u => u.id === storedUser.id);
+                if (currentUser) {
+                    this.currentUser = currentUser;
+                    console.log('Restored current user:', this.currentUser.username);
+                } else {
+                    // If user not found in server data, clear the session
+                    localStorage.removeItem('currentUser');
+                    console.log('Stored user not found in server data, clearing session');
+                }
             }
         } catch (error) {
             console.error('Error loading users:', error);
@@ -60,7 +72,8 @@ class Auth {
             }
 
             const result = await response.json();
-            this.users.push(user);
+            // Reload users after successful signup
+            await this.loadUsers();
             console.log('Signup successful:', username);
             return { success: true, message: 'User created successfully' };
         } catch (error) {
@@ -75,14 +88,22 @@ class Auth {
             return { success: false, message: 'Username and password are required' };
         }
 
-        const user = this.users.find(u => u.username === username);
-        if (!user) {
-            return { success: false, message: 'Invalid username or password' };
-        }
-
         try {
-            const isValid = await this.verifyPassword(password, user.password);
-            if (isValid) {
+            // Reload users before login attempt
+            await this.loadUsers();
+            
+            const user = this.users.find(u => u.username === username);
+            if (!user) {
+                return { success: false, message: 'Invalid username or password' };
+            }
+
+            const hashedInput = await this.hashPassword(password);
+            console.log('Comparing hashes:', {
+                input: hashedInput,
+                stored: user.password
+            });
+
+            if (hashedInput === user.password) {
                 this.currentUser = { ...user };
                 localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                 console.log('Login successful:', username);
@@ -121,16 +142,6 @@ class Auth {
                 .join('');
         } catch (error) {
             console.error('Error hashing password:', error);
-            throw error;
-        }
-    }
-
-    async verifyPassword(password, hashedPassword) {
-        try {
-            const hashedInput = await this.hashPassword(password);
-            return hashedInput === hashedPassword;
-        } catch (error) {
-            console.error('Error verifying password:', error);
             throw error;
         }
     }

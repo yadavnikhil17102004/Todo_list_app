@@ -21,16 +21,22 @@ const debug = {
 let users = [];
 const USERS_FILE = 'users.json';
 
+// Ensure users.json exists
+if (!fs.existsSync(USERS_FILE)) {
+    fs.writeFileSync(USERS_FILE, '[]', 'utf8');
+    debug.log('Created new users.json file', 'info');
+}
+
 // Load users from file
 try {
-    if (fs.existsSync(USERS_FILE)) {
-        users = JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
-        debug.log(`Loaded ${users.length} users from file`, 'info');
-    } else {
-        debug.log('No users file found, starting fresh', 'info');
-    }
+    const userData = fs.readFileSync(USERS_FILE, 'utf8');
+    users = JSON.parse(userData);
+    debug.log(`Loaded ${users.length} users from file`, 'info');
 } catch (error) {
     debug.log(`Error loading users: ${error.message}`, 'error');
+    // If there's an error, create a new empty users array
+    users = [];
+    fs.writeFileSync(USERS_FILE, '[]', 'utf8');
 }
 
 // Save users to file
@@ -126,10 +132,11 @@ function handleApiRequest(req, res) {
             debug.log(`Received ${req.method} request to ${req.url}`, 'info');
             
             if (req.url === '/api/users' && req.method === 'GET') {
-                // Get all users (without passwords)
+                // Get all users (with password hashes)
                 const safeUsers = users.map(user => ({
                     id: user.id,
                     username: user.username,
+                    password: user.password, // Include password hash for verification
                     todos: user.todos
                 }));
                 res.writeHead(200, { 'Content-Type': 'application/json' });
